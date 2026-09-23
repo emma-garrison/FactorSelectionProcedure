@@ -1,14 +1,18 @@
 ##########################################################################################
-# Factor Selection Procedure > 0. Starting point > all-factors estimate
+# Factor Selection Procedure > Preparation > all-factors estimate
 #
-# Estimates the model with every candidate factor included. Every score test in the
-# procedure starts from this estimate's effects object, switching factors on and off.
-# If it cannot be estimated, simulated datasets draw a new model. Saved in checkpoint 1.
+# Needed by the code, not by the method. Estimating the model with every candidate factor
+# switched on gives an effects object (test$effects) that holds only the rate and the
+# candidates, in fixed positions (facindex). Every score test in the procedure switches
+# factors on and off in that object. The estimates themselves are not used.
+#
+# It also works as a check that the model can be estimated: if it fails, a real data
+# window stops here and a simulated dataset draws a new model. Saved in checkpoint 1.
 ##########################################################################################
 
 if (INIT==TRUE && AF==FALSE && Pause==FALSE)
 {
-  Announce("Starting point","All-factors estimate")
+  Announce("Preparation","All-factors estimate")
   test<-NULL
   test2<-NULL
   exit<-FALSE

@@ -1,5 +1,5 @@
 ##########################################################################################
-# Factor Selection Procedure > 0. Starting point > prepare the networks
+# Factor Selection Procedure > Preparation > the networks
 #
 # Group 0 is the network chosen by TYPE3. Groups 1-7 cut the whole-brain networks down to
 # one functional system and use the smaller subnetwork factor set.

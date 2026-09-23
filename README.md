@@ -10,7 +10,6 @@ Models are stochastic actor-oriented models fitted with [RSiena](https://www.sta
 
 ```mermaid
 flowchart TD
-    S[Starting point<br/>estimate the model with every candidate factor] --> A
     subgraph P[Factor Selection Procedure]
         A[1. All-Pairs Initialization<br/>test every pair of factors, add up to two] --> M1[2. Motion to Reconsider<br/>drop factors that no longer meet the threshold]
         M1 --> F[3. Factor Addition<br/>add the factor with the lowest p-value]
@@ -26,6 +25,8 @@ flowchart TD
 3. **Factor Addition.** Every factor not yet in the model is score-tested against the current model. The one with the lowest p-value is added if it is below the threshold, followed by a Motion to Reconsider. This repeats until no factor qualifies.
 
 After the procedure, the chosen model is estimated again until it converges well, and its factors, weights and standard errors are saved.
+
+Before the procedure, the code estimates the model with every candidate factor switched on. This step is needed by the code, not by the method: it provides the RSiena effects object that every score test switches factors on and off in, and its estimates are not used. If this estimation fails, a real data window is skipped and a simulated dataset draws a new model.
 
 ## The datasets
 
@@ -49,7 +50,7 @@ setup/                          shared start of every job
 datasets/                       how each dataset gets its time point 1 and 2 networks
 factor_selection_procedure/
   run_factor_selection_procedure.R   runs the steps below in order
-  0_starting_point/                  networks, all-factors estimate, start or continue
+  0_preparation/                     networks and the effects object the score tests work in
   1_all_pairs_initialization/        score all pairs, first and second factor, Motion to Reconsider
   2_motion_to_reconsider.R
   3_factor_addition/                 score the remaining factors, add the best one, Motion to Reconsider

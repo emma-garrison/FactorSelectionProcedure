@@ -4,14 +4,15 @@
 # Finds which network formation factors (RSiena effects) explain how a network changed
 # between time point 1 and time point 2:
 #
-#   0. Starting point            estimate the model with every candidate factor
 #   1. All-Pairs Initialization  test every pair of factors and add up to two
 #   2. Motion to Reconsider      drop factors that no longer meet the threshold
 #                                (after every factor added)
 #   3. Factor Addition           keep adding the factor with the lowest p-value while it
 #                                is below the threshold
 #
-# Afterwards the chosen model is estimated and its results saved (after_factor_selection/).
+# Before it, a preparation step sets up the networks and the effects object the score
+# tests work in (0_preparation/). Afterwards the chosen model is estimated and its results
+# saved (after_factor_selection/).
 #
 # Runs once on the network chosen by TYPE3. Whole-brain group model set runs first run each
 # functional system (groups 1-7) and finish with the whole brain (group 0).
@@ -29,10 +30,10 @@ while (h<=length(groups) && Pause==FALSE)
 {
   g<-groups[h]
 
-  ###################0. STARTING POINT###############################
-  Step("factor_selection_procedure/0_starting_point/1_prepare_networks")
-  Step("factor_selection_procedure/0_starting_point/2_all_factors_estimate")
-  Step("factor_selection_procedure/0_starting_point/3_start_or_continue")
+  ###################PREPARATION###############################
+  Step("factor_selection_procedure/0_preparation/1_prepare_networks")
+  Step("factor_selection_procedure/0_preparation/2_all_factors_estimate")
+  Step("factor_selection_procedure/0_preparation/3_start_or_continue")
 
   ###################1. ALL-PAIRS INITIALIZATION###############################
   Step("factor_selection_procedure/1_all_pairs_initialization/1_score_all_pairs")

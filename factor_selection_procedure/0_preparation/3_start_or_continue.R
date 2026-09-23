@@ -1,5 +1,5 @@
 ##########################################################################################
-# Factor Selection Procedure > 0. Starting point > start or continue
+# Factor Selection Procedure > Preparation > start or continue
 #
 # exceptions holds the effect indices of the factors in the current model. Everything from
 # here on is saved in checkpoint 2, which is separate for each copy.
