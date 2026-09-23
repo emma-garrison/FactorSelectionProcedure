@@ -1,0 +1,22 @@
+# Data and results (never commit participant data)
+*.zip
+*.mat
+*.csv
+*.txt
+*.RData
+*.rds
+*.out
+*Original*/
+*Results/
+
+# R
+.Rhistory
+.Rproj.user/
+
+# MATLAB autosave
+*.asv
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
