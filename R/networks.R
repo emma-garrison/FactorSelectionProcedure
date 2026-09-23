@@ -5,17 +5,17 @@
 # two scans (Network1, Network2) with the participant's age at each scan (Age1, Age2).
 ##########################################################################################
 
-SubNetwork <- function(net,FS,type3)
+SubNetwork <- function(net,SN,type3)
 {
-  # Keeps only the regions of functional system type3-1 (type3 = 1 keeps the whole brain).
+  # Keeps only the regions of subnetwork type3-1 (type3 = 1 keeps the whole brain).
   if (type3!=1)
   {
-    return (net[FS==(type3-1),FS==(type3-1)])
+    return (net[SN==(type3-1),SN==(type3-1)])
   }
   return (net)
 }
 
-LoadWindows <- function(location,FS,type3,N)
+LoadWindows <- function(location,SN,type3,N)
 {
   #This function reads every network window for one modality.
   # location <- folder with one sub-folder per participant
@@ -38,8 +38,8 @@ LoadWindows <- function(location,FS,type3,N)
           mytimewin<-readMat(paste0(location,'/',participants[subject],'/',timewindows[timewindow]))
           age1<-mytimewin$Age1[1]
           age2<-mytimewin$Age2[1]
-          t1<-SubNetwork(mytimewin$Network1,FS,type3)
-          t2<-SubNetwork(mytimewin$Network2,FS,type3)
+          t1<-SubNetwork(mytimewin$Network1,SN,type3)
+          t2<-SubNetwork(mytimewin$Network2,SN,type3)
           ages1[length(windows)+1]<-age1
           ages2[length(windows)+1]<-age2
           setnumbers[[length(windows)+1]]<-c(subject,timewindow)
@@ -55,7 +55,7 @@ LoadWindows <- function(location,FS,type3,N)
   return (list(ages1=ages1,ages2=ages2,windows=windows,setnumbers=setnumbers,netnames=netnames))
 }
 
-LoadPairedWindows <- function(locationf,locations,resultlocationf,resultlocations,FS,FSname,dataset,type3,N,copy)
+LoadPairedWindows <- function(locationf,locations,resultlocationf,resultlocations,SN,SNname,dataset,type3,N,copy)
 {
   #This function reads the fMRI and DTI windows of every participant with both, and pairs up
   #windows whose scan ages match.
@@ -90,7 +90,7 @@ LoadPairedWindows <- function(locationf,locations,resultlocationf,resultlocation
       timewindowss<-list.files(paste0(locations,'/',participantss[subjects]),pattern = "^Window.*\\.mat$")
       if (dataset=="real_data")
       {
-        resultpattern<-paste0("^",FSname,"Window.*_copy",copy,"\\.mat$")
+        resultpattern<-paste0("^",SNname,"Window.*_copy",copy,"\\.mat$")
         resultwindowsf<-list.files(paste0(resultlocationf,'/',participantsf[subject]),pattern = resultpattern)
         resultwindowss<-list.files(paste0(resultlocations,'/',participantss[subjects]),pattern = resultpattern)
       }
@@ -121,8 +121,8 @@ LoadPairedWindows <- function(locationf,locations,resultlocationf,resultlocation
             subjectnamef[timewindow]<-mytimewinf$ID.subject[1]
             age1f[timewindow]<-mytimewinf$Age1[1]
             age2f[timewindow]<-mytimewinf$Age2[1]
-            t1<-SubNetwork(mytimewinf$Network1,FS,type3)
-            t2<-SubNetwork(mytimewinf$Network2,FS,type3)
+            t1<-SubNetwork(mytimewinf$Network1,SN,type3)
+            t2<-SubNetwork(mytimewinf$Network2,SN,type3)
             t1f[[timewindow]]<-t1
             t2f[[timewindow]]<-t2
           },error=function(cond)
@@ -137,8 +137,8 @@ LoadPairedWindows <- function(locationf,locations,resultlocationf,resultlocation
             subjectnames[timewindow]<-mytimewins$ID.subject[1]
             age1s[timewindow]<-mytimewins$Age1[1]
             age2s[timewindow]<-mytimewins$Age2[1]
-            t1<-SubNetwork(mytimewins$Network1,FS,type3)
-            t2<-SubNetwork(mytimewins$Network2,FS,type3)
+            t1<-SubNetwork(mytimewins$Network1,SN,type3)
+            t2<-SubNetwork(mytimewins$Network2,SN,type3)
             t1s[[timewindow]]<-t1
             t2s[[timewindow]]<-t2
           },error=function(cond)

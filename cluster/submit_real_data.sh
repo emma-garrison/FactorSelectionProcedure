@@ -18,7 +18,7 @@ WINDOWS=$1  # scan windows to run, passed to sbatch --array
 COPY=$2
 
 for TYPE1 in 1 2 3; do                     # 1 = fMRI, 2 = DTI, 3 = combined fMRI + DTI
-    for TYPE3 in 1 2 3 4 5 6 7 8; do       # 1 = whole brain, 2-8 = functional systems 1-7
+    for TYPE3 in 1 2 3 4 5 6 7 8; do       # 1 = whole brain, 2-8 = subnetworks 1-7
         CMD=(sbatch --array="$WINDOWS"
              --job-name="RealData_${TYPE1}_${TYPE3}_${COPY}"
              cluster/run_job.slurm real_data "$TYPE1" "$TYPE3" "$COPY")

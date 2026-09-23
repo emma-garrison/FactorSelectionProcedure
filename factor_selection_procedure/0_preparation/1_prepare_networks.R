@@ -2,7 +2,7 @@
 # Factor Selection Procedure > Preparation > the networks
 #
 # Group 0 is the network chosen by TYPE3. Groups 1-7 cut the whole-brain networks down to
-# one functional system and use the smaller subnetwork factor set.
+# one subnetwork and use the smaller subnetwork factor set.
 ##########################################################################################
 
 # Which modalities are modelled: combined model selection models fMRI (TYPEA 1) or DTI
@@ -16,9 +16,9 @@ if(g==0)
   if (type3==1)
   {
     N<-cfg$num_regions
-    FSname<-NULL
-    FSCovarList<-list("FunctionalSystems","categorical",FS)
-    covariates<-list(FSCovarList)
+    SNname<-NULL
+    SNCovarList<-list("Subnetworks","categorical",SN)
+    covariates<-list(SNCovarList)
     varcovariates<-list()
     DistDyCovarList<-list("Distance","continuous",DistMat)
     dycovariates<-list(DistDyCovarList)
@@ -40,13 +40,13 @@ if(g==0)
 }else
 {
   print("Run A Subnet")
-  N<-sum(FS==g)
-  dataf<-if (usef) array(c(t1f[FS==g,FS==g],t2f[FS==g,FS==g]), dim=c(N,N,2)) else NULL
-  datas<-if (uses) array(c(t1s[FS==g,FS==g],t2s[FS==g,FS==g]), dim=c(N,N,2)) else NULL
+  N<-sum(SN==g)
+  dataf<-if (usef) array(c(t1f[SN==g,SN==g],t2f[SN==g,SN==g]), dim=c(N,N,2)) else NULL
+  datas<-if (uses) array(c(t1s[SN==g,SN==g],t2s[SN==g,SN==g]), dim=c(N,N,2)) else NULL
 
   covariates<-list()
   varcovariates<-list()
-  SubDistMat=DistMat[FS==g,FS==g]
+  SubDistMat=DistMat[SN==g,SN==g]
   DistDyCovarList<-list("Distance","continuous",SubDistMat)
   dycovariates<-list(DistDyCovarList)
   vardycovariates<-list()
@@ -59,7 +59,7 @@ if(g==0)
     facindex<-subfacindexR
   }
 
-  saveloc<-gsub('Window', paste0(FSnames[g],"Window"), originalsaveloc)
+  saveloc<-gsub('Window', paste0(SNnames[g],"Window"), originalsaveloc)
   print(saveloc)
 
   ChiMat<-matrix(NA,nrow=facindex[[length(facindex)]],ncol=facindex[[length(facindex)]])

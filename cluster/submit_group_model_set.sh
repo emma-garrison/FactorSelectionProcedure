@@ -24,7 +24,7 @@ INSTANCES=${2:-1-357}   # config.R: simulation$group_model_set (7 models x 51 wi
 
 for RATE in 5 20 35 50 65; do                  # config.R: simulation$rates
     for TYPE1 in 1 2 3; do                     # 1 = fMRI, 2 = DTI, 3 = combined fMRI + DTI
-        for TYPE3 in 1 2 3 4 5 6 7 8; do       # 1 = whole brain, 2-8 = functional systems 1-7
+        for TYPE3 in 1 2 3 4 5 6 7 8; do       # 1 = whole brain, 2-8 = subnetworks 1-7
             # Combined runs model fMRI (TYPEA 1) and DTI (TYPEA 2) on their own first
             if [[ $TYPE1 -eq 3 ]]; then TYPEAS="1 2"; else TYPEAS="0"; fi
             for TYPEA in $TYPEAS; do

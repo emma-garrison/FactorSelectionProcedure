@@ -23,20 +23,20 @@ ResultsFolder <- function(folderhead,dataset,rate,Subject=NULL)
   return (paste0(DatasetFolder(folderhead,dataset),'Rate',as.character(rate),'/'))
 }
 
-OutputLocation <- function(folderhead,dataset,type3,typeA,rate,FSname,Subject=NULL,Window=NULL)
+OutputLocation <- function(folderhead,dataset,type3,typeA,rate,SNname,Subject=NULL,Window=NULL)
 {
   #This function creates the results folder for this run and returns the prefix every output file name starts with.
-  # Functional system runs get their own sub-folder (simulated datasets) or file prefix (real data).
+  # subnetwork runs get their own sub-folder (simulated datasets) or file prefix (real data).
   # Combined group model set runs mark the modality modelled: fMRIWindow (typeA 1), DTIWindow (typeA 2).
   folder<-ResultsFolder(folderhead,dataset,rate,Subject)
   dir.create(folder,showWarnings=FALSE,recursive=TRUE)
   if (dataset=="real_data")
   {
-    return (paste0(folder,FSname,'Window',as.character(Window),'_'))
+    return (paste0(folder,SNname,'Window',as.character(Window),'_'))
   }
   if (type3!=1)
   {
-    folder<-paste0(folder,FSname,'/')
+    folder<-paste0(folder,SNname,'/')
     dir.create(folder,showWarnings=FALSE,recursive=TRUE)
   }
   prefix<-''

@@ -29,7 +29,7 @@ if(Pause==FALSE)
     print("All Done Y'all!!!")
     if (INIT==TRUE && AF==TRUE && PP==TRUE && Pause==FALSE)
     {
-      callit<-paste0(FSname,as.character(n),'_copy',as.character(copy))
+      callit<-paste0(SNname,as.character(n),'_copy',as.character(copy))
       MarkCompleted(folderhead,dataset,rate,callit)
     }
   }

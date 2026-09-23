@@ -25,11 +25,11 @@ if(file.exists(CheckpointFile(0)))
   Pause<-FALSE
   newmodel<-0
   attempts<-1
-  # Groups to run: 0 is the network chosen by TYPE3, 1-7 are functional systems.
-  # Whole-brain group model set runs do every functional system first, then the whole brain.
+  # Groups to run: 0 is the network chosen by TYPE3, 1-7 are subnetworks.
+  # Whole-brain group model set runs do every subnetwork first, then the whole brain.
   if (dataset=="group_model_set" && type3==1)
   {
-    groups<-c(rep(1:length(FSnames), each=sameexamples),0)
+    groups<-c(rep(1:length(SNnames), each=sameexamples),0)
   }else
   {
     groups<-c(0)

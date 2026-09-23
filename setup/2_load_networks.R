@@ -16,7 +16,7 @@ windowss<-NULL
 if (type1==1)
 {
   folderhead<-"fMRI"
-  loaded<-LoadWindows(fmrilocation,FS,type3,N)
+  loaded<-LoadWindows(fmrilocation,SN,type3,N)
   Ages1f<-loaded$ages1
   Ages2f<-loaded$ages2
   windowsf<-loaded$windows
@@ -28,7 +28,7 @@ if (type1==1)
 if (type1==2)
 {
   folderhead<-"DTI"
-  loaded<-LoadWindows(dtilocation,FS,type3,N)
+  loaded<-LoadWindows(dtilocation,SN,type3,N)
   Ages1s<-loaded$ages1
   Ages2s<-loaded$ages2
   windowss<-loaded$windows
@@ -43,7 +43,7 @@ if (type1==3)
   loaded<-LoadPairedWindows(fmrilocation,dtilocation,
                             DatasetFolder("fMRI","real_data"),
                             DatasetFolder("DTI","real_data"),
-                            FS,FSname,dataset,type3,N,copy)
+                            SN,SNname,dataset,type3,N,copy)
   list2env(loaded,envir=globalenv())
 }
 rm(loaded)

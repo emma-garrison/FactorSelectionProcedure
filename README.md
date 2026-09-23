@@ -36,7 +36,7 @@ Before the procedure, the code estimates the model with every candidate factor s
 | Simulated: individual model set | `individual_model_set.R` | Each instance draws its own model; time point 1 is a random real network and time point 2 is simulated from it | Does the procedure recover a model's factors? |
 | Simulated: group model set | `group_model_set.R` | A few models, each producing many time point 2s from many different real time point 1s | How consistently does the procedure recover the same model? |
 
-Each dataset can use fMRI, DTI or both combined (TYPE1), and the whole brain or one of seven functional systems (TYPE3). Combined runs model fMRI and DTI together, starting from the factors found for each on its own. For the real data, that means from the fMRI and DTI real data results. In the group model set, TYPEA 1 (fMRI) and TYPEA 2 (DTI) runs come first, followed by TYPEA 3 (both).
+Each dataset can use fMRI, DTI or both combined (TYPE1), and the whole brain or one of seven subnetworks (TYPE3). Combined runs model fMRI and DTI together, starting from the factors found for each on its own. For the real data, that means from the fMRI and DTI real data results. In the group model set, TYPEA 1 (fMRI) and TYPEA 2 (DTI) runs come first, followed by TYPEA 3 (both).
 
 ## Repository layout
 
@@ -106,7 +106,7 @@ A new COPY number starts the Factor Selection Procedure again from the same netw
 Everything that can be tuned is in [`config.R`](config.R):
 
 - **Paths:** where the input data is, where results go, and the scratch folder.
-- **Candidate factors:** for whole-brain, functional-system and combined models.
+- **Candidate factors:** for whole-brain, subnetwork and combined models.
 - **RSiena settings:** for estimation, the Factor Selection Procedure and convergence reduction.
 - **Factor Selection Procedure settings:** threshold, repeats and attempts, and the job time limit.
 - **Simulated datasets:** base rates, number of models, and how models are weighted towards fewer factors.
@@ -118,7 +118,7 @@ This repository contains no imaging data or results. By default the procedure re
 | Path | Contents |
 |---|---|
 | `fMRIOriginal/`, `DTIOriginal/` | One folder per participant with `Window*.mat` files. Each holds `Network1`, `Network2` (100 × 100 adjacency matrices), `Age1`, `Age2` and `ID.subject` |
-| `FunctionalSystems.txt` | Region number and its functional system (1–7), tab separated |
+| `FunctionalSystems.txt` | Region number and its subnetwork (1–7), tab separated |
 | `DistanceMatrix.csv` | 100 × 100 distances between regions |
 | `factorweights.mat` | Candidate weights for each factor, used to draw simulated models |
 

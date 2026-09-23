@@ -23,9 +23,9 @@ if (dataset=="real_data")
   print(paste0("Overall Window: ",n))
   if (type3!=1)
   {
-    print(paste0("Subnet: ",FSname))
+    print(paste0("Subnet: ",SNname))
   }
 }
 
-saveloc<-OutputLocation(folderhead,dataset,type3,typeA,rate,FSname,Subject,Window)
+saveloc<-OutputLocation(folderhead,dataset,type3,typeA,rate,SNname,Subject,Window)
 originalsaveloc<-saveloc

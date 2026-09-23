@@ -16,8 +16,8 @@
 #   N      instance
 #   RATE   base rate of the simulated networks
 #   TYPE1  modality: 1 fMRI, 2 DTI, 3 fMRI and DTI combined
-#   TYPE3  network: 1 whole brain, 2-8 one functional system (see config.R). Whole-brain
-#          runs also run each functional system.
+#   TYPE3  network: 1 whole brain, 2-8 one subnetwork (see config.R). Whole-brain
+#          runs also run each subnetwork.
 #   TYPEA  combined runs (TYPE1 = 3) only, mirroring the real data: 1 = fMRI alone,
 #          2 = DTI alone, 3 = both, starting from what 1 and 2 found. 0 otherwise
 #   COPY   repeat number: copies share the setup and all-factors estimate but each runs
@@ -34,7 +34,7 @@ repo_dir<-dirname(normalizePath(scriptfile))
 source(file.path(repo_dir,"setup","start.R"))
 
 ###################SETUP###############################
-Step("setup/1_reference_data")      # functional systems, region distances and covariates
+Step("setup/1_reference_data")      # subnetworks, region distances and covariates
 Step("setup/2_load_networks")       # every participant's networks, used as time point 1
 Step("setup/3_output_location")     # results folder for this run
 Step("setup/4_settings")            # procedure settings and candidate factors

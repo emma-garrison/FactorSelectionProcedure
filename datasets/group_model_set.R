@@ -49,7 +49,7 @@ if (INIT==FALSE)
   print(paste0('Overall Instance: ',n))
   if(type3!=1)
   {
-    print(paste0('Subnet: ',FSname))
+    print(paste0('Subnet: ',SNname))
   }
 }
 

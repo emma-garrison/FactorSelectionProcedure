@@ -14,13 +14,13 @@ FactorSet <- function(modalities,wholebrain)
 {
   #This function lists the candidate factors for a run and where they sit in the RSiena effects object.
   # modalities <- "fMRI", "DTI" or c("fMRI","DTI")
-  # wholebrain <- TRUE for the whole brain, FALSE for a single functional system
+  # wholebrain <- TRUE for the whole brain, FALSE for a single subnetwork
   # Factors are labelled "<factor>,<modality>". In the effects object each modality starts
   # with its rate effect, so for k factors the indices are 2:(k+1) for the first modality
   # and (k+3):(2k+2) for the second. Within a modality RSiena may order the factors
   # differently from the lists in config.R, so use EffectIndices to find a particular one.
   # Whole-brain sets also include the smaller subnetwork set (sub*), used when a whole-brain
-  # run goes on to re-run each functional system.
+  # run goes on to re-run each subnetwork.
   combined<-length(modalities)==2
   EffectIndex <- function(k)
   {

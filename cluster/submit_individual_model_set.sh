@@ -20,7 +20,7 @@ INSTANCES=${2:-1-200}   # one per model (config.R: simulation$individual_model_s
 
 for RATE in 5 20 35 50 65; do                  # config.R: simulation$rates
     for TYPE1 in 1 2 3; do                     # 1 = fMRI, 2 = DTI, 3 = combined fMRI + DTI
-        for TYPE3 in 1 2 3 4 5 6 7 8; do       # 1 = whole brain, 2-8 = functional systems 1-7
+        for TYPE3 in 1 2 3 4 5 6 7 8; do       # 1 = whole brain, 2-8 = subnetworks 1-7
             CMD=(sbatch --array="$INSTANCES"
                  --job-name="IndividualModelSet_${RATE}_${TYPE1}_${TYPE3}_${COPY}"
                  cluster/run_job.slurm individual_model_set "$RATE" "$TYPE1" "$TYPE3" "$COPY")

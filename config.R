@@ -22,18 +22,18 @@ cfg$networks <- list(
 
 # Reference files inside data_dir
 cfg$files <- list(
-  functional_systems = "FunctionalSystems.txt", # region number -> functional system (1-7), tab separated
+  subnetworks        = "FunctionalSystems.txt", # region number -> subnetwork (1-7), tab separated
   distance_matrix    = "DistanceMatrix.csv",    # region x region distances
   factor_weights     = "factorweights.mat"      # candidate weights for each factor when simulating networks
 )
 
 ###################BRAIN REGIONS###############################
 cfg$num_regions <- 100
-cfg$functional_systems <- c("Vis", "SomMot", "DorsAttn", "SalVentAttn", "Limbic", "Cont", "Default")
+cfg$subnetworks <- c("Vis", "SomMot", "DorsAttn", "SalVentAttn", "Limbic", "Cont", "Default")
 
 ###################FACTORS###############################
 # Candidate RSiena effects the procedure chooses between. Whole-brain runs use the larger
-# sets; runs on a single functional system use the smaller ones. The "combined" sets are
+# sets; runs on a single subnetwork use the smaller ones. The "combined" sets are
 # used when fMRI and DTI are modelled together and include cross-network effects.
 cfg$factors <- list(
   whole_brain          = c("density", "transTriads", "between", "nbrDist2", "cycle4", "outInAss", "X", "XWX",
@@ -74,7 +74,7 @@ cfg$procedure <- list(
   reps              = 2,    # estimations per model; the one with the best convergence is kept
   search_repeats    = 1,    # score tests averaged per factor
   search_attempts   = 2,    # tries per score test estimation before a last try without the time limit
-  subnet_attempts   = 1,    # search_attempts for the functional system runs that follow a whole-brain run
+  subnet_attempts   = 1,    # search_attempts for the subnetwork runs that follow a whole-brain run
   all_factors_tries = 4,    # tries for the all-factors estimate and the final model estimate
   time_limit        = NULL, # optional time limit per estimation (seconds); NULL for none
   job_hours         = 160   # pause and checkpoint before this many hours (168 h walltime minus an 8 h buffer)
@@ -98,5 +98,5 @@ cfg$simulation <- list(
     windows_per_model = 50,   # windows simulated from each model after the first (instances 1-357 in total)
     bias              = 1
   ),
-  functional_system_repeats = 1  # whole-brain group model set runs also re-run each functional system this many times
+  subnetwork_repeats = 1  # whole-brain group model set runs also re-run each subnetwork this many times
 )

@@ -19,13 +19,13 @@ thresh<-cfg$procedure$p_threshold
 reps<-cfg$procedure$reps
 time_limit<-cfg$procedure$time_limit
 afattempts<-cfg$procedure$all_factors_tries
-sameexamples<-cfg$simulation$functional_system_repeats
+sameexamples<-cfg$simulation$subnetwork_repeats
 initializecount<-0
 seedfactors<-c() # factors a combined run starts from ("<factor>,<modality>")
 
 ##################FACTOR DETAILS################################
 # selfactors are the candidate factors ("<factor>,<modality>") and facindexO their
-# positions in the effects object. The sub* versions are for the functional system runs
+# positions in the effects object. The sub* versions are for the subnetwork runs
 # that follow a whole-brain run.
 fs<-FactorSet(Modalities(type1),type3==1)
 factors<-fs$factors

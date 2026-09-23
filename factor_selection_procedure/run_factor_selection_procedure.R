@@ -15,7 +15,7 @@
 # saved (after_factor_selection/).
 #
 # Runs once on the network chosen by TYPE3. Whole-brain group model set runs first run each
-# functional system (groups 1-7) and finish with the whole brain (group 0).
+# subnetwork (groups 1-7) and finish with the whole brain (group 0).
 ##########################################################################################
 
 # The networks are chosen: save them so a continuing job uses the same ones
